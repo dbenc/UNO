@@ -1,20 +1,105 @@
-// UNO.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <cstdio>
+#include "Kártya.h"
+#include "Kártya.cpp "
+#include "Pakli.h"
+#include "Pakli.cpp"
+#include "Játékos.cpp"
+#include "Játékos.h"
+#include <fstream>
+using namespace std;
+
+#define TEST -1
+
+
+COLOR FromString(const string& str)
+{
+	if (str == "piros")
+		return piros;
+	else if (str == "zold")
+		return zöld;
+	else if (str == "kek")
+		return kék;
+	else if (str == "sarga")
+		return sárga;
+	else
+		return joker;
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+
+	deck main_deck;
+	main_deck.create();
+	main_deck.quick_shuffle();
+
+	player smart;
+	player random;
+
+
+	deck temp_deck;
+	card played_card;
+	card temp_card;
+	
+	cout << main_deck.get_size();
+
+
+	int card_flag = 0;
+	while (card_flag == 0)
+	{
+		temp_card = main_deck.draw();
+		if (temp_card.color != joker)
+		{
+			card_flag = 1;
+			played_card = temp_card;
+		}
+		else
+		{
+			temp_deck.add_card(temp_card);
+		}
+	}
+
+
+	
+	bool force_draw_bool = false;
+	int win = 0;
+
+	while (win == 0)
+	{
+		if (force_draw_bool)
+		{
+			if (played_card.number == 10)
+			{
+				cout << "Huzz kettot!" << endl;
+				card draw_2;
+				draw_2 = main_deck.draw();
+				random.add_card(draw_2, 2);
+			}
+
+			if (played_card.number == 14)
+			{
+				cout << "Huzz negyet!" << endl;
+				card draw_4;
+				draw_4 = main_deck.draw();
+				random.add_card(draw_4, 2);
+
+			}
+			force_draw_bool = false;
+		}
+
+
+		random.drop_card(random.random_move(played_card, main_deck));
+
+
+
+
+
+	}
+	
+	
+
+	std::cin.get();
+
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
