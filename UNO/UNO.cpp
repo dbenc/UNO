@@ -20,8 +20,8 @@ int main()
 	player smart;
 	player random;
 
-	random.add_card(main_deck.draw(), 7);
-	smart.add_card(main_deck.draw(), 7);
+	random.add_card(main_deck.draw(), 2);
+	smart.add_card(main_deck.draw(), 2);
 
 	deck temp_deck;
 	card played_card;
@@ -74,11 +74,27 @@ int main()
 
 		if (played_card.number == 11)
 		{
+			played_card = smart.drop_card(smart.smart_move(played_card, main_deck));
+			played_card = smart.joker_rand(played_card);
 
+			if (smart.get_size() == 0)
+			{
+				win = 1;
+				cout << "PLAYER smart has won the game." << endl;
+				break;
+			}
 		}
 		else if (played_card.number == 12)
 		{
+			played_card = smart.drop_card(smart.smart_move(played_card, main_deck));
+			played_card = smart.joker_rand(played_card);
 
+			if (smart.get_size() == 0)
+			{
+				win = 1;
+				cout << "PLAYER smart has won the game." << endl;
+				break;
+			}
 		}
 		else 
 		{
@@ -118,11 +134,27 @@ int main()
 
 		if (played_card.number == 11)
 		{
+			played_card = random.drop_card(random.random_move(played_card, main_deck));
+			played_card = random.joker_rand(played_card);
 
+			if (random.get_size() == 0)
+			{
+				win = 1;
+				cout << "PLAYER random has won the game." << endl;
+				break;
+			}
 		}
 		else if (played_card.number == 12)
 		{
+			played_card = random.drop_card(random.random_move(played_card, main_deck));
+			played_card = random.joker_rand(played_card);
 
+			if (random.get_size() == 0)
+			{
+				win = 1;
+				cout << "PLAYER random has won the game." << endl;
+				break;
+			}
 		}
 		else
 		{
