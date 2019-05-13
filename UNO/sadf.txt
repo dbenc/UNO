@@ -1,0 +1,40 @@
+bool force_draw_bool = false;
+	int win = 0;
+
+	while (win == 0)
+	{
+		if (force_draw_bool)
+		{
+			if (played_card.number == 10)
+			{
+				cout << "Huzz kettot!" << endl;
+				card draw_2;
+				for (int i = 0; i < 2; i++)
+				{
+					draw_2 = main_deck.draw();
+					random.add_card(draw_2);
+				}
+			}
+
+			if (played_card.number == 14)
+			{
+				cout << "Huzz negyet!" << endl;
+				card draw_4;
+				for (int i = 0; i < 4; i++)
+				{
+					draw_4 = main_deck.draw();
+					random.add_card(draw_4);
+				}
+
+			}
+			force_draw_bool = false;
+		}
+
+
+		random.drop_card(random.random_move(played_card, main_deck))
+
+
+
+
+
+	}
