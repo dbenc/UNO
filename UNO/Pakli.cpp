@@ -82,30 +82,6 @@ void deck::create()
 
 }
 
-deck::deck(const deck & other)
-{
-	copy(other);
-}
-
-
-const deck & deck::operator= (const deck & other)
-{
-	if (this != &other)
-	{
-		clear();
-		copy(other);
-	}
-	return *this;
-}
-
-
-
-deck::~deck()
-{
-	clear();
-}
-
-
 
 
 void deck::shuffle()
@@ -220,14 +196,6 @@ void deck::copy(const deck & other)
 	{
 		ptr_deck[i] = other.ptr_deck[i];
 	}
-}
-
-
-void deck::clear()
-{
-	delete[]ptr_deck;
-	ptr_deck = NULL;
-	size = 0;
 }
 
 

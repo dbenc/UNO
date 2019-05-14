@@ -17,11 +17,22 @@ int main()
 	main_deck.create();
 	main_deck.quick_shuffle();
 
-	player smart;
 	player random;
+	player smart;
 
-	random.add_card(main_deck.draw(), 2);
-	smart.add_card(main_deck.draw(), 2);
+	for (int i = 0; i < 7; i++)
+	{
+		card tempcard;
+		tempcard = main_deck.draw();
+		random.add_card(tempcard);
+	}
+
+	for (int i = 0; i < 7; i++)
+	{
+		card tempcard;
+		tempcard = main_deck.draw();
+		smart.add_card(tempcard);
+	}
 
 	deck temp_deck;
 	card played_card;
@@ -44,8 +55,6 @@ int main()
 		}
 	}
 
-
-	
 	bool force_draw_bool = false;
 	int win = 0;
 
@@ -56,17 +65,24 @@ int main()
 			if (played_card.number == 10)
 			{
 				cout << "Huzz kettot!" << endl;
-				card draw_2;
-				draw_2 = main_deck.draw();
-				random.add_card(draw_2, 2);
+
+				for (int i = 0; i < 2; i++)
+				{
+					card draw_2;
+					draw_2 = main_deck.draw();
+					random.add_card(draw_2);
+				}
 			}
 
 			if (played_card.number == 14)
 			{
 				cout << "Huzz negyet!" << endl;
-				card draw_4;
-				draw_4 = main_deck.draw();
-				random.add_card(draw_4, 2);
+				for (int i = 0; i < 4; i++)
+				{
+					card draw_4;
+					draw_4 = main_deck.draw();
+					random.add_card(draw_4);
+				}
 
 			}
 			force_draw_bool = false;
@@ -96,7 +112,7 @@ int main()
 				break;
 			}
 		}
-		else 
+		else
 		{
 			played_card = random.drop_card(random.random_move(played_card, main_deck));
 			played_card = random.joker_rand(played_card);
@@ -116,17 +132,24 @@ int main()
 			if (played_card.number == 10)
 			{
 				cout << "Huzz kettot!" << endl;
-				card draw_2;
-				draw_2 = main_deck.draw();
-				smart.add_card(draw_2, 2);
+
+				for (int i = 0; i < 2; i++)
+				{
+					card draw_2;
+					draw_2 = main_deck.draw();
+					smart.add_card(draw_2);
+				}
 			}
 
 			if (played_card.number == 14)
 			{
 				cout << "Huzz negyet!" << endl;
-				card draw_4;
-				draw_4 = main_deck.draw();
-				smart.add_card(draw_4, 2);
+				for (int i = 0; i < 4; i++)
+				{
+					card draw_4;
+					draw_4 = main_deck.draw();
+					smart.add_card(draw_4);
+				}
 
 			}
 			force_draw_bool = false;
@@ -171,8 +194,22 @@ int main()
 			break;
 		}
 
+		if (main_deck.get_size() < 10)
+		{
+			for (int i = 0; i < main_deck.get_size(); i++)
+			{
+				temp_deck.add_card(main_deck.draw());
+			}
+			main_deck = temp_deck;
+			main_deck.quick_shuffle();
+			temp_deck = deck();
+		}
+
 	}
+
+
 	std::cin.get();
+
 
 	return 0;
 }

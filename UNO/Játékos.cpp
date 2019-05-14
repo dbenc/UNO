@@ -4,21 +4,18 @@
 #include <string.h>
 using namespace std;
 
+#define MAX_SIZE 108
 
 player::player() 
 {
-	hand = new card[size];
+	hand = new card[MAX_SIZE];
 	size = 0;
 }
 
-void player::add_card(card temp_card, int l)
+void player::add_card(card temp_card)
 {
-	for (int i = 0; i < l; i++)
-	{
-		hand[size] = temp_card;
-		size++;
-	}
-	
+	hand[size] = temp_card;
+	size++;	
 }
 
 void player::print_hand()
@@ -121,12 +118,12 @@ card player::joker_rand(card temp_card)
 {
 	if (temp_card.color == joker)
 	{
-		temp_card.color == zöld;
+		temp_card.color = zöld;
 		return temp_card;
 	}
 	else
 	{
-		temp_card.color == temp_card.color;
+		temp_card.color = temp_card.color;
 		return temp_card;
 	}
 }
@@ -153,13 +150,13 @@ card player::joker_smart(card temp_card)
 				if (hand[i] == hand[j])
 					count++;
 			if (count == max_count)
-				temp_card.color == hand[i].color;
+				temp_card.color = hand[i].color;
 		}
 		return temp_card;
 	}
 	else
 	{
-		temp_card.color == temp_card.color;
+		temp_card.color = temp_card.color;
 		return temp_card;
 	}
 }

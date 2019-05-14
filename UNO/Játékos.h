@@ -6,7 +6,7 @@ class player
 {
 	public:
 			player();
-			void add_card(card temp_card, int i);
+			void add_card(card temp_card);
 			void print_hand();
 			int random_move(card table_card, deck deck);
 			int smart_move(card table_card, deck deck);

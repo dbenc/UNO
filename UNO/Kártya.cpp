@@ -31,7 +31,7 @@ std::ostream & operator<<(std::ostream & out, card const & temp_card)
 	case 10: out << "HUZZ KETTOT"; break;
 	case 11: out << "UGORJ!"; break;
 	case 12: out << "FORDULJ!"; break;
-	case 13: out << "SZINALASZTO"; break;
+	case 13: out << "SZINVALASZTO"; break;
 	case 14: out << "SZIN HUZZ NEGYET"; break;
 	default: out << (int)temp_card.number; break;
 	}
