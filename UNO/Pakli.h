@@ -37,4 +37,5 @@ private:
 
 
 std::ostream & operator << (std::ostream & out, deck const & temp_deck);
+
 #endif 

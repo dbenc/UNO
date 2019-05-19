@@ -1,0 +1,32 @@
+A játék célja: elsoként lerakni valamennyi lapot. Körönként a játékos egyszerre csak egy lapot tehet le, ha éppen van egy illeszked? lapja. Ha egyik lapja sem illesztheto, akkor húznia kell egy lapot a csomagból.
+
+A játékos csak akkor tehet le egy lapot, ha a pakli tetején felfordított kártyával azonos színu, azonos számú vagy azonos szimbólumú kártyája van.
+ 
+Példa: Ha piros kilences fekszik kint, akkor bármilyen színu 9-es (sárga, zöld, kék, piros), vagy egy tetszoleges számot (0,1,2,3,4,5,6,7,8,9) tartalmazó piros kártya teheto le. 
+Ha a piros 9-esre kék 9-est helyezünk, akkor a következo játékos vagy ismét 9-est helyez le vagy egy tetszoleges, de kék színu kártyát.
+ 
+Ha a játékos nem tud lapot tenni, akkor húznia kell egyet a csomagból és a következo játékosra kerül a sor.
+ 
+Az akciókártyák akkor játszhatók ki, ha a játékosnak nincs több számozott kártyája vagy amikor a játékos ezt szükségesnek ítéli.
+ 
+Akciókártyák
+
+Kirekeszto akciókártya:
+Ha a legfelso kártya pl. egy sárga színu kártya, akkor a játékos leteheti sárga színu kirekeszto akciókártyáját. Ezután a soron következo játékos se nem tehet le, se nem vehet fel kártyát, egyszer kimarad és az ot követo játékosra kerül a sor.
+ 
+Retúr akciókártya:
+ Ebben a játékban most úgy használom mint a kirekesztot.
+ 
+Húzz 2-t akciókártya:
+Ha a legfelül pl. egy piros kártya fekszik, akkor a játékos kijátszhatja a piros színu Húzz 2-t akciókártyáját. A következo játékosnak két kártyát kell felvennie és lapot nem tehet le.
+ 
+Színválasztás akciókártya:
+Ha egy játékos nem tud lapot tenni vagy egy meghatározott színt tudatosan meg akar tartani, akkor kijátszhatja a színválasztás akciókártyát. Az elozo kártya színe közömbös. Az akciókártyát kijátszó játékos tetszoleges színt választhat.
+ 
+Példa: Ha a szín piros és a játékos sem piros, sem megfelelo számozott lappal nem rendelkezik, hanem esetleg egy sárga kártyája van, akkor kijátszhatja a színválasztó kártyáját és ezzel a sárga színt választhatja. A következ? játékosnak sárga színu kártyát kell letennie.
+ 
+Húzz 4-et + színválasztás akciókártya:
+Ezt a kártyát is bármikor ki lehet játszani. Ezzel a kártyával két legyet üthetünk egy csapásra: a szín is megválasztható és ráadásul a következo játékosnak 4 kártyát kell felvennie, és egyet sem tehet le. Ez a kártya igen fontos szerepet játszik, mindaddig visszatartható, ameddig a kijátszott színre vagy számra tudunk tenni.
+ 
+A játék befejezése 
+Az utolsó el?tti kártya letételekor jól hallhatóan azt kell mondani, hogy UNO. Ez figyelmeztetés a többi játékos számára, hogy már csak egyetlen lap van a kezünkben. Ha ezt elmúlasztjuk megtenni, akkor két kártyát kell felvenni. A játék akkor ér véget amikor az egyik játékos letette az összes lapját.
