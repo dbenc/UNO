@@ -109,7 +109,7 @@ void deck::shuffle()
 	for (int i = 0; i < size; i++)
 	{
 		// véletlen pozíció a temp_deck-ben
-		srand(time(NULL)); // minden alkalommal más szám
+		srand((unsigned int)time(NULL)); // minden alkalommal más szám
 		pos = rand() % temp_size;
 		//véletlen elem deck[i]-hez rendelése
 		ptr_deck[i] = temp_deck[pos];
@@ -166,7 +166,7 @@ void deck::quick_shuffle()
 	card temp_card;
 	while (temp_size > 0)
 	{
-		srand(time(NULL));
+		srand((unsigned int) time(NULL));
 		pos = rand() % temp_size;
 		// elemcsere
 		temp_card = ptr_deck[temp_size];
@@ -184,7 +184,7 @@ void deck::print_deck()
 {
 	for (int i = 0; i < size; i++)
 	{
-		cout << i << ": " << ptr_deck[i] << endl;
+		cout << i << ": " << ptr_deck[i];
 	}
 }
 

@@ -26,7 +26,7 @@ public:
 	card(int num, COLOR col);
 };
 
-std::ostream & operator<<(std::ostream & out, card const & temp_card);
+std::ostream& operator<<(std::ostream& out, card const& temp_card);
 
 
 #endif // _KÁRTYA_H_

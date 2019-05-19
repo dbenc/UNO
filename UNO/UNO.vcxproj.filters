@@ -18,5 +18,25 @@
     <ClCompile Include="UNO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Játékos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pakli.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kártya.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Játékos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kártya.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pakli.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

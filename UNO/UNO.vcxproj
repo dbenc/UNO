@@ -151,7 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Játékos.cpp" />
+    <ClCompile Include="Kártya.cpp" />
+    <ClCompile Include="Pakli.cpp" />
     <ClCompile Include="UNO.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Játékos.h" />
+    <ClInclude Include="Kártya.h" />
+    <ClInclude Include="Pakli.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

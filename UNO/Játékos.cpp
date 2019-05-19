@@ -1,34 +1,33 @@
-#include "K�rtya.h"
-#include "J�t�kos.h"
+﻿/*	A játékosok "kezei" a kezükben lévő lapok.
+	Ezek std::vector típusuak és ezekbe rakom a card típusú kártyáimat.
+*/
+
+#include "Kártya.h"
+#include "Játékos.h"
 #include <iostream>
 #include <string.h>
+#include <vector> 
+
 using namespace std;
 
-#define MAX_SIZE 108
-
-player::player() 
-{
-	hand = new card[MAX_SIZE];
-	size = 0;
-}
-
+// Kártya felhúzás
 void player::add_card(card temp_card)
 {
-	hand[size] = temp_card;
-	size++;	
+	hand.push_back(temp_card);
 }
 
 void player::print_hand()
 {
-	for (int i = 0; i < size; i++)
+	for (size_t i = 0; i < hand.size(); i++)
 	{
-		cout << i << ": " << hand[i];
+		cout << i << ": " << hand[i] << endl;
 	}
 }
 
-int player::random_move(card table_card, deck deck)
+// Kiválasztja hogy melyik kártyát teheti le a játékos
+int player::move_smart(card table_card)
 {
-	for (int start = 0; start < size + 1; start++)
+	for (size_t start = 0; start < hand.size(); start++)
 	{
 		if (table_card.number == hand[start].number)
 		{
@@ -38,132 +37,144 @@ int player::random_move(card table_card, deck deck)
 		{
 			return start;
 		}
-		else if (start == size)
+		else if (hand[start].color == joker)
 		{
-			hand[start] = deck.draw();
-			size++;
-			return 66;
+			return start;
 		}
 	}
+	return 66;
 }
 
-int player::smart_move(card table_card, deck deck)
+
+// A különbség az előzőhöz képest hogy ő nem teszi le a színválasztót csak ha színválasztó van lent
+int player::move_rand(card table_card)
 {
-	int count = 0;
-	for (int start = 0; start < size + 1; start++)
+	for (size_t start = 0; start < hand.size(); start++)
 	{
 		if (table_card.number == hand[start].number)
 		{
-			for (int j = start + 1; j < size; j++)
-			{
-				if (hand[start].color == hand[j].color)
-				{
-					count++;
-					break;
-				}
-			}
-			if (count++ >= 3)
-			{
-				return start;
-			}
-			else if (count++ <= 3)
-			{
-				return start;
-			}
+			return start;
 		}
 		else if (table_card.color == hand[start].color)
 		{
-			for (int i = 1; i < size; ++i)
-			{
-				if (hand[start].number < hand[i].number)
-				{
-					hand[start].number = hand[i].number;
-				}
-			}
 			return start;
 		}
-		else if (start == size)
-		{
-			hand[start] = deck.draw();
-			size++;
-			return 66;
-		}
 	}
+	return 66;
 }
 
+// Amikor a játékos letett egy kártyát ami miatt a következő kimarad,
+// nem nézi a számot nehogy ő is kimardjon (az uno fáljban majd látszik miért)
+int player::move_turn(card table_card)
+{
+	for (size_t start = 0; start < hand.size(); start++)
+	{
+		if (table_card.color == hand[start].color)
+		{
+			return start;
+		}
+		else if (hand[start].color == joker)
+		{
+			return start;
+		}
+	}
+	return 66;
+}
 
-card player::drop_card(int pos)
+// Leteszi a kártyát vagy létrehoz egy olyat ami nincs a pakliban,
+// ami lényegében húzást jelent (ez is majd az uno fájlban látszik)
+card player::drop_card(unsigned pos)
 {
 	card temp_card;
-	if (pos >= size)
-	{
 
-	}
-	else if (pos == size)
+
+	if (pos <= hand.size())
 	{
 		temp_card = hand[pos];
-		size--;
+
+		hand.erase(hand.begin() + pos);
+
 		return temp_card;
 	}
 	else
 	{
-		temp_card = hand[pos];
-		memmove(hand + pos, hand + (pos+1), (size - pos - 1) * sizeof(int));
-		size--;
-		return temp_card;
+		card r;
+		r.number = 99;
+		r.color = piros;
+		return r;
 	}
 }
 
+
+//Ha színválasztója van, mindig zöldet kér
 card player::joker_rand(card temp_card)
 {
+	card joker_card;
+
 	if (temp_card.color == joker)
 	{
-		temp_card.color = z�ld;
-		return temp_card;
+		joker_card.color = zöld;
+		return joker_card;
 	}
 	else
 	{
-		temp_card.color = temp_card.color;
 		return temp_card;
 	}
 }
 
+
+//Színválasztónál azt a színt kéri amiből a legtöbbje van
 card player::joker_smart(card temp_card)
 {
+	card joker_card;
+
 	if (temp_card.color == joker)
 	{
 		int max_count = 0;
-		for (int i = 0; i < size; i++)
+		for (size_t i = 0; i < hand.size(); i++)
 		{
 			int count = 1;
-			for (int j = i + 1; j < size; j++)
-				if (hand[i] == hand[j])
+			for (size_t j = i + 1; j < hand.size(); j++)
+			{
+				if (hand[i].color == hand[j].color)
 					count++;
+			}
 			if (count > max_count)
+			{
 				max_count = count;
+			}
 		}
 
-		for (int i = 0; i < size; i++)
+		for (size_t i = 0; i < hand.size(); i++)
 		{
 			int count = 1;
-			for (int j = i + 1; j < size; j++)
-				if (hand[i] == hand[j])
+			for (size_t j = i + 1; j < hand.size(); j++)
+			{
+				if (hand[i].color == hand[j].color)
 					count++;
+			}
 			if (count == max_count)
-				temp_card.color = hand[i].color;
+			{
+				joker_card.color = hand[i].color;
+			}
 		}
-		return temp_card;
+		return joker_card;
 	}
 	else
 	{
-		temp_card.color = temp_card.color;
 		return temp_card;
 	}
 }
 
 
 
-int player::get_size() const
+void player::print_size()
 {
+	cout << hand.size() << endl;
+}
+
+int player::get_size()
+{
+	int size = static_cast<int>(hand.size());
 	return size;
 }
